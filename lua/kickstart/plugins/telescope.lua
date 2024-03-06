@@ -40,20 +40,29 @@ require('telescope').setup {
   -- You can put your default mappings / updates / etc. in here
   --  All the info you're looking for is in `:help telescope.setup()`
   --
-  -- defaults = {
-  --   mappings = {
-  --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-  --   },
-  -- },
+  defaults = {
+    history = {
+      path = vim.fs.joinpath(vim.fn.stdpath "data", "databases/telescope_history.sqlite3"),
+      limit = 100,
+    }
+  },
   -- pickers = {}
   extensions = {
     ['ui-select'] = { require('telescope.themes').get_dropdown() },
+    wrap_results = true,
+    frecency = {
+      db_safe_mode = false
+    }
   },
 }
 
 -- Enable Telescope extensions if they are installed
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'ui-select')
+-- Custom Extensions
+pcall(require("telescope").load_extension, "frecency")
+pcall(require("telescope").load_extension, "neoclip")
+pcall(require("telescope").load_extension, "noice")
 
 -- See `:help telescope.builtin`
 local builtin = require 'telescope.builtin'

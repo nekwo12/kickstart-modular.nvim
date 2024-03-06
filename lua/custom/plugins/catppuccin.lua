@@ -1,0 +1,4 @@
+-- https://github.com/catppuccin/nvim
+local function gh(repo) return 'https://github.com/' .. repo end
+
+vim.pack.add { { src = gh 'catppuccin/nvim', name = "catppuccin" } }
